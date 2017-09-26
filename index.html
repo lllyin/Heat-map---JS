@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>热点图</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .img-wrap {
+            position: relative;
+            width: 1000px;
+            margin: 10px 10px;
+        }
+
+        .img-wrap img {
+            width: 100%;
+            /*filter: blur(5px);*/
+        }
+
+        .area1 {
+            background-color: #1aad16;
+        }
+
+        .point {
+            position: absolute;
+            display: block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            left: 15px;
+            top: 15px;
+            border-radius: 50%;
+            /*cursor: pointer;*/
+            animation: animate1 0.5s ease 0s infinite alternate;
+        }
+
+        @keyframes animate1 {
+            from {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            to {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+<h3>100行代码实现热点图推荐商品</h3>
+<!--image-->
+<div class="img-wrap">
+    <img src="./media/ys.jpg" usemap="#ysmap">
+</div>
+
+
+
+<script>
+    var lyin = {};
+    //生成点的位置
+    lyin.genPoint = function(points,rad) {
+        for (var i = 0, len = points.length; i < len; i++) {
+            var x = points[i].position[0]-rad;   //x轴坐标
+            var y = points[i].position[1]-rad;   //y轴坐标
+
+            var pointDom = document.createElement("a");
+            pointDom.setAttribute("class","point");
+            pointDom.setAttribute("href",points[i].href);
+            pointDom.setAttribute("title",points[i].title)
+            pointDom.style.left = x +"px";
+            pointDom.style.top = y + "px";
+            document.querySelector(".img-wrap").appendChild(pointDom);
+            console.log(x,y)
+        }
+    }
+
+    var points = [{
+        position: [886, 492],
+        title:"战靴",
+        href:"#xuezi"
+    }, {
+        position: [504, 128],
+        title:"披风",
+        href:"#pifeng"
+    }, {
+        position: [739, 39],
+        title:"帽子",
+        href:"#maozi"
+    }, {
+        position: [412, 345],
+        title:"天涯亡命刀",
+        href:"#dao"
+    }]
+
+    lyin.genPoint(points,8);    //生成点
+
+    function getXY() {
+        var oImgWrap = document.querySelector(".img-wrap");
+        var osx = oImgWrap.offsetLeft;
+        var osy = oImgWrap.offsetTop;
+        document.querySelector(".img-wrap").onclick = function (e) {
+            console.log("坐标：",e.clientX-osx,e.clientY-osy)
+        }
+    }
+
+    getXY()
+</script>
+</body>
+</html>
