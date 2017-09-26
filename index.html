@@ -68,7 +68,8 @@
             var pointDom = document.createElement("a");
             pointDom.setAttribute("class","point");
             pointDom.setAttribute("href",points[i].href);
-            pointDom.setAttribute("title",points[i].title)
+            pointDom.setAttribute("title",points[i].title);
+            pointDom.setAttribute("target","_blank");
             pointDom.style.left = x +"px";
             pointDom.style.top = y + "px";
             document.querySelector(".img-wrap").appendChild(pointDom);
@@ -79,19 +80,19 @@
     var points = [{
         position: [886, 492],
         title:"战靴",
-        href:"#xuezi"
+        href:"https://s.taobao.com/search?q=战靴"
     }, {
         position: [504, 128],
         title:"披风",
-        href:"#pifeng"
+        href:"https://s.taobao.com/search?q=披风"
     }, {
         position: [739, 39],
         title:"帽子",
-        href:"#maozi"
+        href:"https://s.taobao.com/search?q=帽子"
     }, {
         position: [412, 345],
         title:"天涯亡命刀",
-        href:"#dao"
+        href:"https://s.taobao.com/search?q=天涯亡命刀"
     }]
 
     lyin.genPoint(points,8);    //生成点
